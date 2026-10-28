@@ -1,0 +1,650 @@
+table 'corporate_financial_health accounts_payable'
+	lineageTag: ac113e90-5485-4223-9eec-1e88f1946f43
+
+	measure 'Total Revenue' = SUM('corporate_financial_health income_statement'[revenue])
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: a9bb416c-6856-433f-a572-9e0014806c25
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Net Income' = ```
+			SUM('corporate_financial_health income_statement'[net_income])
+			
+			```
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: b65cda60-19bf-4258-8d96-ef72bffe69fa
+
+	measure 'Operating Cash Flow' = ```
+			SUM('corporate_financial_health cash_flow'[operating_cash_flow])
+			
+			```
+		formatString: 0.00
+		lineageTag: 9ab3444e-baac-40c2-aa87-ab62a6f83e58
+
+	measure 'Latest FY Revenue' = ```
+			
+			VAR LatestDate =
+			    CALCULATE(
+			        MAX('corporate_financial_health income_statement'[end]),
+			        REMOVEFILTERS('corporate_financial_health income_statement')
+			    )
+			RETURN
+			    CALCULATE(
+			        SUM('corporate_financial_health income_statement'[revenue]),
+			        'corporate_financial_health income_statement'[end] = LatestDate
+			    )
+			
+			```
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: e6f0fcdf-96e8-4e1a-889e-30283279eae6
+
+	measure 'Latest FY Net Income' = ```
+			
+			VAR LatestDate =
+			    CALCULATE(
+			        MAX('corporate_financial_health income_statement'[end]),
+			        REMOVEFILTERS('corporate_financial_health income_statement')
+			    )
+			RETURN
+			    CALCULATE(
+			        SUM('corporate_financial_health income_statement'[net_income]),
+			        'corporate_financial_health income_statement'[end] = LatestDate
+			    )
+			
+			```
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 1a14f51b-12cc-4e39-bbd2-e404ca3bf618
+
+	measure 'Latest FY Net Margin %' = ```
+			
+			DIVIDE(
+			    [Latest FY Net Income],
+			    [Latest FY Revenue],
+			    0
+			)
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 92acb8fa-afd9-4e39-8557-ad372a1032eb
+
+	measure 'Latest FY Gross Margin %' = ```
+			
+			VAR LatestDate =
+			    CALCULATE(
+			        MAX('corporate_financial_health income_statement'[end]),
+			        REMOVEFILTERS('corporate_financial_health income_statement')
+			    )
+			RETURN
+			    CALCULATE(
+			        DIVIDE(
+			            SUM('corporate_financial_health income_statement'[gross_profit]),
+			            SUM('corporate_financial_health income_statement'[revenue]),
+			            0
+			        ),
+			        'corporate_financial_health income_statement'[end] = LatestDate
+			    )
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: aab70f3e-aa4f-416b-8c25-9b5a1a169667
+
+	measure 'Current Ratio' = ```
+			
+			DIVIDE(
+			    SUM('corporate_financial_health balance_sheet'[current_assets]),
+			    SUM('corporate_financial_health balance_sheet'[current_liabilities])
+			)
+			
+			```
+		formatString: 0.00
+		lineageTag: 380fda9a-1f07-496e-ae51-395fd3073170
+
+	measure 'Cash Ratio' = ```
+			
+			DIVIDE(
+			    SUM('corporate_financial_health balance_sheet'[cash]),
+			    SUM('corporate_financial_health balance_sheet'[current_liabilities])
+			)
+			
+			```
+		formatString: 0.00
+		lineageTag: 784ea576-0cdd-4cc1-8de1-1a9098403352
+
+	measure 'Latest FY Working Capital' = ```
+			
+			VAR LatestDate =
+			    CALCULATE(
+			        MAX('corporate_financial_health balance_sheet'[end]),
+			        REMOVEFILTERS('corporate_financial_health balance_sheet')
+			    )
+			RETURN
+			    CALCULATE(
+			        SUM('corporate_financial_health balance_sheet'[current_assets])
+			            - SUM('corporate_financial_health balance_sheet'[current_liabilities]),
+			        'corporate_financial_health balance_sheet'[end] = LatestDate
+			    )
+			
+			```
+		formatString: 0.00
+		lineageTag: 7a8c7114-e7cb-4c94-add7-fa6408a266f8
+
+	measure 'Latest FY Current Ratio' = ```
+			
+			VAR LatestDate =
+			    CALCULATE(
+			        MAX('corporate_financial_health balance_sheet'[end]),
+			        REMOVEFILTERS('corporate_financial_health balance_sheet')
+			    )
+			RETURN
+			    CALCULATE(
+			        DIVIDE(
+			            SUM('corporate_financial_health balance_sheet'[current_assets]),
+			            SUM('corporate_financial_health balance_sheet'[current_liabilities])
+			        ),
+			        'corporate_financial_health balance_sheet'[end] = LatestDate
+			    )
+			
+			```
+		lineageTag: 7d53ab2a-2272-48a5-b6f5-e23ec15cb469
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Latest FY Cash Ratio' = ```
+			
+			VAR LatestDate =
+			    CALCULATE(
+			        MAX('corporate_financial_health balance_sheet'[end]),
+			        REMOVEFILTERS('corporate_financial_health balance_sheet')
+			    )
+			RETURN
+			    CALCULATE(
+			        DIVIDE(
+			            SUM('corporate_financial_health balance_sheet'[cash]),
+			            SUM('corporate_financial_health balance_sheet'[current_liabilities])
+			        ),
+			        'corporate_financial_health balance_sheet'[end] = LatestDate
+			    )
+			
+			```
+		formatString: 0.00
+		lineageTag: 193332b4-0537-43e4-85fb-e7e4a4fbc6a5
+
+	measure DSO = ```
+			
+			VAR LatestDate =
+			    MAX('corporate_financial_health balance_sheet'[end])
+			VAR PreviousDate =
+			    CALCULATE(
+			        MAX('corporate_financial_health balance_sheet'[end]),
+			        FILTER(
+			            ALL('corporate_financial_health balance_sheet'[end]),
+			            'corporate_financial_health balance_sheet'[end] < LatestDate
+			        )
+			    )
+			VAR CurrentAR =
+			    CALCULATE(
+			        SUM('corporate_financial_health balance_sheet'[accounts_receivable]),
+			        'corporate_financial_health balance_sheet'[end] = LatestDate
+			    )
+			VAR PreviousAR =
+			    CALCULATE(
+			        SUM('corporate_financial_health balance_sheet'[accounts_receivable]),
+			        'corporate_financial_health balance_sheet'[end] = PreviousDate
+			    )
+			VAR AnnualRevenue =
+			    CALCULATE(
+			        SUM('corporate_financial_health income_statement'[revenue]),
+			        'corporate_financial_health income_statement'[end] = LatestDate
+			    )
+			VAR AverageAR =
+			    DIVIDE(CurrentAR + PreviousAR, 2)
+			RETURN
+			    DIVIDE(AverageAR, AnnualRevenue) * 365
+			
+			```
+		lineageTag: 797c2034-5342-4476-9abc-23f2d5237dd5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure DIO = ```
+			
+			VAR LatestDate =
+			    MAX('corporate_financial_health balance_sheet'[end])
+			VAR PreviousDate =
+			    CALCULATE(
+			        MAX('corporate_financial_health balance_sheet'[end]),
+			        FILTER(
+			            ALL('corporate_financial_health balance_sheet'[end]),
+			            'corporate_financial_health balance_sheet'[end] < LatestDate
+			        )
+			    )
+			VAR CurrentInventory =
+			    CALCULATE(
+			        SUM('corporate_financial_health balance_sheet'[inventory]),
+			        'corporate_financial_health balance_sheet'[end] = LatestDate
+			    )
+			VAR PreviousInventory =
+			    CALCULATE(
+			        SUM('corporate_financial_health balance_sheet'[inventory]),
+			        'corporate_financial_health balance_sheet'[end] = PreviousDate
+			    )
+			VAR AnnualCOGS =
+			    CALCULATE(
+			        SUM('corporate_financial_health income_statement'[cogs]),
+			        'corporate_financial_health income_statement'[end] = LatestDate
+			    )
+			VAR AverageInventory =
+			    DIVIDE(CurrentInventory + PreviousInventory, 2)
+			RETURN
+			    DIVIDE(AverageInventory, AnnualCOGS) * 365
+			
+			
+			```
+		lineageTag: 54b9e70f-00c2-45f7-8fc4-b2e428427e9f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Test AP' = ```
+			
+			SUM('corporate_financial_health accounts_payable'[accounts_payable])
+			
+			```
+		formatString: 0
+		lineageTag: b5cc9186-976d-4808-872f-f683d5f0a92e
+
+	measure 'Test COGS' = ```
+			
+			SUM('corporate_financial_health income_statement'[cogs])
+			
+			```
+		formatString: 0
+		lineageTag: 853c6bc0-cfd7-4162-8ed3-35f98b9aa3f0
+
+	measure 'Test Average AP' = ```
+			
+			VAR LatestDate =
+			    MAX('corporate_financial_health accounts_payable'[end])
+			VAR PreviousDate =
+			    CALCULATE(
+			        MAX('corporate_financial_health accounts_payable'[end]),
+			        FILTER(
+			            ALL('corporate_financial_health accounts_payable'[end]),
+			            'corporate_financial_health accounts_payable'[end] < LatestDate
+			        )
+			    )
+			VAR CurrentAP =
+			    CALCULATE(
+			        SUM('corporate_financial_health accounts_payable'[accounts_payable]),
+			        'corporate_financial_health accounts_payable'[end] = LatestDate
+			    )
+			VAR PreviousAP =
+			    CALCULATE(
+			        SUM('corporate_financial_health accounts_payable'[accounts_payable]),
+			        'corporate_financial_health accounts_payable'[end] = PreviousDate
+			    )
+			RETURN
+			    DIVIDE(CurrentAP + PreviousAP, 2)
+			
+			```
+		lineageTag: b4289baf-a4ed-4619-b939-961fdd52d43a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Test Latest Income Date' = ```
+			
+			MAX('corporate_financial_health income_statement'[end])
+			
+			```
+		lineageTag: a471e368-ea45-402c-902a-f7723e27c4bf
+
+	measure 'Test Latest COGS Simple' = ```
+			
+			VAR LatestIncomeDate =
+			    MAXX(
+			        ALL('corporate_financial_health income_statement'),
+			        'corporate_financial_health income_statement'[end]
+			    )
+			RETURN
+			    CALCULATE(
+			        SUM('corporate_financial_health income_statement'[cogs]),
+			        REMOVEFILTERS('corporate_financial_health income_statement'),
+			        'corporate_financial_health income_statement'[end] = LatestIncomeDate
+			    )
+			
+			```
+		formatString: 0
+		lineageTag: 8af8375a-ca49-40c0-ba4d-acd9fef515c0
+
+	measure DPO = ```
+			
+			VAR LatestAPDate =
+			    MAXX(
+			        ALL('corporate_financial_health accounts_payable'),
+			        'corporate_financial_health accounts_payable'[end]
+			    )
+			VAR PreviousAPDate =
+			    MAXX(
+			        FILTER(
+			            ALL('corporate_financial_health accounts_payable'),
+			            'corporate_financial_health accounts_payable'[end] < LatestAPDate
+			        ),
+			        'corporate_financial_health accounts_payable'[end]
+			    )
+			VAR CurrentAP =
+			    CALCULATE(
+			        SUM('corporate_financial_health accounts_payable'[accounts_payable]),
+			        REMOVEFILTERS('corporate_financial_health accounts_payable'),
+			        'corporate_financial_health accounts_payable'[end] = LatestAPDate
+			    )
+			VAR PreviousAP =
+			    CALCULATE(
+			        SUM('corporate_financial_health accounts_payable'[accounts_payable]),
+			        REMOVEFILTERS('corporate_financial_health accounts_payable'),
+			        'corporate_financial_health accounts_payable'[end] = PreviousAPDate
+			    )
+			VAR AverageAP =
+			    DIVIDE(CurrentAP + PreviousAP, 2)
+			VAR AnnualCOGS =
+			    [Test Latest COGS Simple]
+			RETURN
+			    DIVIDE(AverageAP, AnnualCOGS) * 365
+			
+			```
+		lineageTag: ed1c0c91-251d-4e07-a3a2-770c1ba6528f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Cash Conversion Cycle' = ```
+			
+			[DSO] + [DIO] - [DPO]
+			
+			```
+		lineageTag: 344af1d0-eded-4393-bee3-00ad6229afa1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'DSO Trend' = ```
+			
+			VAR SelectedDate =
+			    MAX('corporate_financial_health balance_sheet'[end])
+			VAR PreviousDate =
+			    MAXX(
+			        FILTER(
+			            ALL('corporate_financial_health balance_sheet'[end]),
+			            'corporate_financial_health balance_sheet'[end] < SelectedDate
+			        ),
+			        'corporate_financial_health balance_sheet'[end]
+			    )
+			VAR CurrentAR =
+			    CALCULATE(
+			        SUM('corporate_financial_health balance_sheet'[accounts_receivable]),
+			        'corporate_financial_health balance_sheet'[end] = SelectedDate
+			    )
+			VAR PreviousAR =
+			    CALCULATE(
+			        SUM('corporate_financial_health balance_sheet'[accounts_receivable]),
+			        'corporate_financial_health balance_sheet'[end] = PreviousDate
+			    )
+			VAR AnnualRevenue =
+			    CALCULATE(
+			        SUM('corporate_financial_health income_statement'[revenue]),
+			        REMOVEFILTERS('corporate_financial_health income_statement'),
+			        'corporate_financial_health income_statement'[end] = SelectedDate
+			    )
+			RETURN
+			    DIVIDE(DIVIDE(CurrentAR + PreviousAR, 2), AnnualRevenue) * 365
+			
+			```
+		lineageTag: 74cc0b2c-4df0-4e37-b38b-0c862801d4de
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'DIO Trend' = ```
+			
+			VAR SelectedDate =
+			    MAX('corporate_financial_health balance_sheet'[end])
+			VAR PreviousDate =
+			    MAXX(
+			        FILTER(
+			            ALL('corporate_financial_health balance_sheet'[end]),
+			            'corporate_financial_health balance_sheet'[end] < SelectedDate
+			        ),
+			        'corporate_financial_health balance_sheet'[end]
+			    )
+			VAR CurrentInventory =
+			    CALCULATE(
+			        SUM('corporate_financial_health balance_sheet'[inventory]),
+			        'corporate_financial_health balance_sheet'[end] = SelectedDate
+			    )
+			VAR PreviousInventory =
+			    CALCULATE(
+			        SUM('corporate_financial_health balance_sheet'[inventory]),
+			        'corporate_financial_health balance_sheet'[end] = PreviousDate
+			    )
+			VAR AnnualCOGS =
+			    CALCULATE(
+			        SUM('corporate_financial_health income_statement'[cogs]),
+			        REMOVEFILTERS('corporate_financial_health income_statement'),
+			        'corporate_financial_health income_statement'[end] = SelectedDate
+			    )
+			RETURN
+			    DIVIDE(DIVIDE(CurrentInventory + PreviousInventory, 2), AnnualCOGS) * 365
+			
+			```
+		lineageTag: c2fbcae4-a163-44b5-974d-a6f04a7e1432
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Test DPO Latest Date' = ```
+			
+			MAXX(
+			    ALL('corporate_financial_health accounts_payable'),
+			    'corporate_financial_health accounts_payable'[end]
+			)
+			
+			```
+		formatString: General Date
+		lineageTag: 197e665c-54b1-44f0-a0a0-5c293083995b
+
+	measure 'DPO Trend' = ```
+			
+			VAR SelectedDate =
+			    MAX('corporate_financial_health accounts_payable'[end])
+			VAR PreviousDate =
+			    MAXX(
+			        FILTER(
+			            ALL('corporate_financial_health accounts_payable'[end]),
+			            'corporate_financial_health accounts_payable'[end] < SelectedDate
+			        ),
+			        'corporate_financial_health accounts_payable'[end]
+			    )
+			VAR CurrentAP =
+			    CALCULATE(
+			        SUM('corporate_financial_health accounts_payable'[accounts_payable]),
+			        'corporate_financial_health accounts_payable'[end] = SelectedDate
+			    )
+			VAR PreviousAP =
+			    CALCULATE(
+			        SUM('corporate_financial_health accounts_payable'[accounts_payable]),
+			        'corporate_financial_health accounts_payable'[end] = PreviousDate
+			    )
+			VAR AnnualCOGS =
+			    CALCULATE(
+			        SUM('corporate_financial_health income_statement'[cogs]),
+			        REMOVEFILTERS('corporate_financial_health income_statement'),
+			        'corporate_financial_health income_statement'[end] = SelectedDate
+			    )
+			RETURN
+			    DIVIDE(DIVIDE(CurrentAP + PreviousAP, 2), AnnualCOGS) * 365
+			
+			```
+		lineageTag: d678f533-d927-4202-85b0-df9dc2aa24df
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CCC Trend' = ```
+			
+			[DSO Trend] + [DIO Trend] - [DPO Trend]
+			
+			```
+		lineageTag: 0bf4327c-96e7-4f7a-8cfc-2b7b54645a68
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'DPO Historical' = ```
+			
+			VAR SelectedDate =
+			    MAX('corporate_financial_health accounts_payable'[end])
+			VAR PreviousDate =
+			    MAXX(
+			        FILTER(
+			            ALL('corporate_financial_health accounts_payable'[end]),
+			            'corporate_financial_health accounts_payable'[end] < SelectedDate
+			        ),
+			        'corporate_financial_health accounts_payable'[end]
+			    )
+			VAR CurrentAP =
+			    CALCULATE(
+			        SUM('corporate_financial_health accounts_payable'[accounts_payable]),
+			        'corporate_financial_health accounts_payable'[end] = SelectedDate
+			    )
+			VAR PreviousAP =
+			    CALCULATE(
+			        SUM('corporate_financial_health accounts_payable'[accounts_payable]),
+			        'corporate_financial_health accounts_payable'[end] = PreviousDate
+			    )
+			VAR AnnualCOGS =
+			    CALCULATE(
+			        SUM('corporate_financial_health income_statement'[cogs]),
+			        REMOVEFILTERS('corporate_financial_health income_statement'),
+			        'corporate_financial_health income_statement'[end] = SelectedDate
+			    )
+			VAR AverageAP =
+			    DIVIDE(CurrentAP + PreviousAP, 2)
+			RETURN
+			    DIVIDE(AverageAP, AnnualCOGS) * 365
+			
+			```
+		lineageTag: 2119b2b6-3a34-4af2-9363-a1447205e6df
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CCC Historical' = ```
+			
+			[DSO Historical] + [DIO Historical] - [DPO Historical]
+			
+			```
+		lineageTag: bc45241b-cbc6-4e29-839d-ddd01a0b64ad
+
+	measure 'DSO Historical' = ```
+			
+			VAR SelectedDate =
+			    MAX('corporate_financial_health accounts_payable'[end])
+			VAR PreviousDate =
+			    MAXX(
+			        FILTER(
+			            ALL('corporate_financial_health balance_sheet'[end]),
+			            'corporate_financial_health balance_sheet'[end] < SelectedDate
+			        ),
+			        'corporate_financial_health balance_sheet'[end]
+			    )
+			VAR CurrentAR =
+			    CALCULATE(
+			        SUM('corporate_financial_health balance_sheet'[accounts_receivable]),
+			        'corporate_financial_health balance_sheet'[end] = SelectedDate
+			    )
+			VAR PreviousAR =
+			    CALCULATE(
+			        SUM('corporate_financial_health balance_sheet'[accounts_receivable]),
+			        'corporate_financial_health balance_sheet'[end] = PreviousDate
+			    )
+			VAR AnnualRevenue =
+			    CALCULATE(
+			        SUM('corporate_financial_health income_statement'[revenue]),
+			        REMOVEFILTERS('corporate_financial_health income_statement'),
+			        'corporate_financial_health income_statement'[end] = SelectedDate
+			    )
+			VAR AverageAR =
+			    DIVIDE(CurrentAR + PreviousAR, 2)
+			RETURN
+			    DIVIDE(AverageAR, AnnualRevenue) * 365
+			
+			```
+		lineageTag: ff25c3dd-7f41-40f2-90d5-5b8c1a7ab123
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'DIO Historical' = ```
+			
+			VAR SelectedDate =
+			    MAX('corporate_financial_health accounts_payable'[end])
+			VAR PreviousDate =
+			    MAXX(
+			        FILTER(
+			            ALL('corporate_financial_health balance_sheet'[end]),
+			            'corporate_financial_health balance_sheet'[end] < SelectedDate
+			        ),
+			        'corporate_financial_health balance_sheet'[end]
+			    )
+			VAR CurrentInventory =
+			    CALCULATE(
+			        SUM('corporate_financial_health balance_sheet'[inventory]),
+			        'corporate_financial_health balance_sheet'[end] = SelectedDate
+			    )
+			VAR PreviousInventory =
+			    CALCULATE(
+			        SUM('corporate_financial_health balance_sheet'[inventory]),
+			        'corporate_financial_health balance_sheet'[end] = PreviousDate
+			    )
+			VAR AnnualCOGS =
+			    CALCULATE(
+			        SUM('corporate_financial_health income_statement'[cogs]),
+			        REMOVEFILTERS('corporate_financial_health income_statement'),
+			        'corporate_financial_health income_statement'[end] = SelectedDate
+			    )
+			VAR AverageInventory =
+			    DIVIDE(CurrentInventory + PreviousInventory, 2)
+			RETURN
+			    DIVIDE(AverageInventory, AnnualCOGS) * 365
+			
+			```
+		lineageTag: 94df8659-ee4e-4da3-9bf4-3efa396aba54
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column end
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 62c43150-2654-494e-b928-2269f9cc51e8
+		summarizeBy: none
+		sourceColumn: end
+
+		variation Variation
+			isDefault
+			relationship: 9b6e960e-0302-4cc4-af0f-a5752d4c16f2
+			defaultHierarchy: LocalDateTable_a77ca87b-ddbf-4ace-b972-f8ae75fd51e5.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column accounts_payable
+		dataType: int64
+		formatString: 0
+		lineageTag: e2bcd0fd-120a-454a-bf1d-bdb8431042d4
+		summarizeBy: sum
+		sourceColumn: accounts_payable
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'corporate_financial_health accounts_payable' = m
+		mode: import
+		source =
+				let
+				    Source = MySQL.Database("192.168.0.101:3306", "corporate_financial_health", [ReturnSingleDatabase=true]),
+				    corporate_financial_health_accounts_payable = Source{[Schema="corporate_financial_health",Item="accounts_payable"]}[Data]
+				in
+				    corporate_financial_health_accounts_payable
+
+	annotation PBI_ResultType = Table
+

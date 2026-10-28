@@ -1,0 +1,74 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "9931ca9351084e94338c",
+  "position": {
+    "x": 42.369337979094077,
+    "y": 46.829268292682926,
+    "z": 0,
+    "height": 98.118466898954708,
+    "width": 272.05574912891984,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "corporate_financial_health cash_flow"
+                    }
+                  },
+                  "Property": "Latest FY Operating Cash Flow"
+                }
+              },
+              "queryRef": "corporate_financial_health cash_flow.Latest FY Operating Cash Flow",
+              "nativeQueryRef": "Latest FY Operating Cash Flow"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "corporate_financial_health cash_flow"
+                  }
+                },
+                "Property": "Latest FY Operating Cash Flow"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "3f66c421260df18cdee7",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "corporate_financial_health cash_flow"
+              }
+            },
+            "Property": "Latest FY Operating Cash Flow"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

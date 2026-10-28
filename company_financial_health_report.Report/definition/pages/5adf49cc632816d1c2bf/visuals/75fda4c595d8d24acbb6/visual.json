@@ -1,0 +1,279 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "75fda4c595d8d24acbb6",
+  "position": {
+    "x": 24.529616724738677,
+    "y": 274.28571428571428,
+    "z": 8,
+    "height": 295.38461538461542,
+    "width": 468.109517601043,
+    "tabOrder": 8
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "HierarchyLevel": {
+                  "Expression": {
+                    "Hierarchy": {
+                      "Expression": {
+                        "PropertyVariationSource": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "corporate_financial_health accounts_payable"
+                            }
+                          },
+                          "Name": "Variation",
+                          "Property": "end"
+                        }
+                      },
+                      "Hierarchy": "Date Hierarchy"
+                    }
+                  },
+                  "Level": "Year"
+                }
+              },
+              "queryRef": "corporate_financial_health accounts_payable.end.Variation.Date Hierarchy.Year",
+              "nativeQueryRef": "end Year",
+              "active": true
+            },
+            {
+              "field": {
+                "HierarchyLevel": {
+                  "Expression": {
+                    "Hierarchy": {
+                      "Expression": {
+                        "PropertyVariationSource": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "corporate_financial_health accounts_payable"
+                            }
+                          },
+                          "Name": "Variation",
+                          "Property": "end"
+                        }
+                      },
+                      "Hierarchy": "Date Hierarchy"
+                    }
+                  },
+                  "Level": "Quarter"
+                }
+              },
+              "queryRef": "corporate_financial_health accounts_payable.end.Variation.Date Hierarchy.Quarter",
+              "nativeQueryRef": "end Quarter",
+              "active": true
+            },
+            {
+              "field": {
+                "HierarchyLevel": {
+                  "Expression": {
+                    "Hierarchy": {
+                      "Expression": {
+                        "PropertyVariationSource": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "corporate_financial_health accounts_payable"
+                            }
+                          },
+                          "Name": "Variation",
+                          "Property": "end"
+                        }
+                      },
+                      "Hierarchy": "Date Hierarchy"
+                    }
+                  },
+                  "Level": "Month"
+                }
+              },
+              "queryRef": "corporate_financial_health accounts_payable.end.Variation.Date Hierarchy.Month",
+              "nativeQueryRef": "end Month",
+              "active": true
+            },
+            {
+              "field": {
+                "HierarchyLevel": {
+                  "Expression": {
+                    "Hierarchy": {
+                      "Expression": {
+                        "PropertyVariationSource": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "corporate_financial_health accounts_payable"
+                            }
+                          },
+                          "Name": "Variation",
+                          "Property": "end"
+                        }
+                      },
+                      "Hierarchy": "Date Hierarchy"
+                    }
+                  },
+                  "Level": "Day"
+                }
+              },
+              "queryRef": "corporate_financial_health accounts_payable.end.Variation.Date Hierarchy.Day",
+              "nativeQueryRef": "end Day",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "corporate_financial_health accounts_payable"
+                    }
+                  },
+                  "Property": "CCC Historical"
+                }
+              },
+              "queryRef": "corporate_financial_health accounts_payable.CCC Historical",
+              "nativeQueryRef": "CCC Historical"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "lineStyles": [
+        {
+          "properties": {
+            "showMarker": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "1651dacec77b61ad4bbd",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "corporate_financial_health accounts_payable"
+              }
+            },
+            "Property": "CCC Historical"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "eba77954ca1e8d44805a",
+        "field": {
+          "HierarchyLevel": {
+            "Expression": {
+              "Hierarchy": {
+                "Expression": {
+                  "PropertyVariationSource": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "corporate_financial_health accounts_payable"
+                      }
+                    },
+                    "Name": "Variation",
+                    "Property": "end"
+                  }
+                },
+                "Hierarchy": "Date Hierarchy"
+              }
+            },
+            "Level": "Year"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "97228d4c0674b71f808e",
+        "field": {
+          "HierarchyLevel": {
+            "Expression": {
+              "Hierarchy": {
+                "Expression": {
+                  "PropertyVariationSource": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "corporate_financial_health accounts_payable"
+                      }
+                    },
+                    "Name": "Variation",
+                    "Property": "end"
+                  }
+                },
+                "Hierarchy": "Date Hierarchy"
+              }
+            },
+            "Level": "Quarter"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "24549f9fd0e4a329a70b",
+        "field": {
+          "HierarchyLevel": {
+            "Expression": {
+              "Hierarchy": {
+                "Expression": {
+                  "PropertyVariationSource": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "corporate_financial_health accounts_payable"
+                      }
+                    },
+                    "Name": "Variation",
+                    "Property": "end"
+                  }
+                },
+                "Hierarchy": "Date Hierarchy"
+              }
+            },
+            "Level": "Month"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "72ea9fc820522a07dc47",
+        "field": {
+          "HierarchyLevel": {
+            "Expression": {
+              "Hierarchy": {
+                "Expression": {
+                  "PropertyVariationSource": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "corporate_financial_health accounts_payable"
+                      }
+                    },
+                    "Name": "Variation",
+                    "Property": "end"
+                  }
+                },
+                "Hierarchy": "Date Hierarchy"
+              }
+            },
+            "Level": "Day"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

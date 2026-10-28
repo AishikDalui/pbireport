@@ -1,0 +1,52 @@
+table Calendar
+	lineageTag: 14926204-95a3-4b21-89b4-b2f8d2046697
+
+	column Date
+		formatString: General Date
+		lineageTag: 8bfe5e40-f059-4414-8eee-69a9859179ca
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		variation Variation
+			isDefault
+			relationship: 74380510-6058-4a7a-a797-fbcf4b47cf04
+			defaultHierarchy: LocalDateTable_54310d6c-6244-4177-a287-8ddcc12c0952.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		formatString: 0
+		lineageTag: 95bcb688-1ddc-4bf0-a859-0964624a1606
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal Year'
+		formatString: 0
+		lineageTag: fc18b1ca-4106-49a0-ade3-6210012f0f8d
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Fiscal Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Calendar = calculated
+		mode: import
+		source = ```
+				
+				ADDCOLUMNS(
+				    CALENDAR(
+				        DATE(2022, 1, 1),
+				        DATE(2026, 12, 31)
+				    ),
+				    "Year", YEAR([Date]),
+				    "Fiscal Year", YEAR([Date])
+				)
+				
+				```
+
+	annotation PBI_Id = 5f37532e7df74490b1efcecd5ab810bc
+

@@ -1,0 +1,29 @@
+model Model
+	culture: en-GB
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-GB
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["corporate_financial_health accounts_payable","corporate_financial_health balance_sheet","corporate_financial_health cash_flow","corporate_financial_health income_statement"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table 'corporate_financial_health accounts_payable'
+ref table DateTableTemplate_a058e9c3-382a-4c0c-ba05-c00bf19cf8d7
+ref table LocalDateTable_a77ca87b-ddbf-4ace-b972-f8ae75fd51e5
+ref table 'corporate_financial_health balance_sheet'
+ref table 'corporate_financial_health cash_flow'
+ref table 'corporate_financial_health income_statement'
+ref table LocalDateTable_1e5cecd1-5acd-4ed4-a060-b7d6f45115f7
+ref table LocalDateTable_b9aa7b82-4cfe-4493-bba4-0e577fa8bc95
+ref table LocalDateTable_efbc44b2-04ee-466d-addd-cebc55c514e1
+ref table Calendar
+ref table LocalDateTable_54310d6c-6244-4177-a287-8ddcc12c0952
+
+ref cultureInfo en-GB
+

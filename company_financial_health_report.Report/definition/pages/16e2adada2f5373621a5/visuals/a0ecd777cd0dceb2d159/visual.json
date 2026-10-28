@@ -1,0 +1,159 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "a0ecd777cd0dceb2d159",
+  "position": {
+    "x": 829.54703832752614,
+    "y": 265.36585365853659,
+    "z": 7,
+    "height": 428.15331010452962,
+    "width": 682.3693379790941,
+    "tabOrder": 7
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "corporate_financial_health income_statement"
+                    }
+                  },
+                  "Property": "end"
+                }
+              },
+              "queryRef": "corporate_financial_health income_statement.end",
+              "nativeQueryRef": "end",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "corporate_financial_health income_statement"
+                        }
+                      },
+                      "Property": "revenue"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(corporate_financial_health income_statement.revenue)",
+              "nativeQueryRef": "Sum of revenue"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "corporate_financial_health income_statement"
+                        }
+                      },
+                      "Property": "net_income"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(corporate_financial_health income_statement.net_income)",
+              "nativeQueryRef": "Sum of net_income"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "corporate_financial_health income_statement"
+                      }
+                    },
+                    "Property": "revenue"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "69e8c2dd8f1b9e4ebdde",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "corporate_financial_health income_statement"
+              }
+            },
+            "Property": "end"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "aec3cdd86a32f5b972b4",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "corporate_financial_health income_statement"
+                  }
+                },
+                "Property": "revenue"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "cec95710ae2a3dd2a514",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "corporate_financial_health income_statement"
+                  }
+                },
+                "Property": "net_income"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

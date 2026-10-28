@@ -1,0 +1,193 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "f3b0f10085ffb0d63e72",
+  "position": {
+    "x": 95.888501742160287,
+    "y": 664.52961672473873,
+    "z": 5,
+    "height": 356.79442508710804,
+    "width": 925.43554006968645,
+    "tabOrder": 5
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "corporate_financial_health balance_sheet"
+                    }
+                  },
+                  "Property": "end"
+                }
+              },
+              "queryRef": "corporate_financial_health balance_sheet.end",
+              "nativeQueryRef": "end",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "corporate_financial_health balance_sheet"
+                        }
+                      },
+                      "Property": "cash"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(corporate_financial_health balance_sheet.cash)",
+              "nativeQueryRef": "Sum of cash"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "corporate_financial_health balance_sheet"
+                        }
+                      },
+                      "Property": "current_liabilities"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(corporate_financial_health balance_sheet.current_liabilities)",
+              "nativeQueryRef": "Sum of current_liabilities"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "corporate_financial_health balance_sheet"
+                        }
+                      },
+                      "Property": "current_assets"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(corporate_financial_health balance_sheet.current_assets)",
+              "nativeQueryRef": "Sum of current_assets"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "corporate_financial_health balance_sheet"
+                  }
+                },
+                "Property": "end"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "b6a25e96c93b338edc14",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "corporate_financial_health balance_sheet"
+              }
+            },
+            "Property": "end"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "3f3e3c136c473e98698b",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "corporate_financial_health balance_sheet"
+                  }
+                },
+                "Property": "cash"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "95b7591887a6bd8b3970",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "corporate_financial_health balance_sheet"
+                  }
+                },
+                "Property": "current_liabilities"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "915ed36ae29bba2c6a7a",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "corporate_financial_health balance_sheet"
+                  }
+                },
+                "Property": "current_assets"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

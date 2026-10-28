@@ -1,0 +1,155 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "a95a1eb923e0b2c686d2",
+  "position": {
+    "x": 706.89895470383271,
+    "y": 236.37630662020908,
+    "z": 4,
+    "height": 283,
+    "width": 595,
+    "tabOrder": 4
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "corporate_financial_health balance_sheet"
+                    }
+                  },
+                  "Property": "end"
+                }
+              },
+              "queryRef": "corporate_financial_health balance_sheet.end",
+              "nativeQueryRef": "end",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "corporate_financial_health balance_sheet"
+                        }
+                      },
+                      "Property": "total_liabilities"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(corporate_financial_health balance_sheet.total_liabilities)",
+              "nativeQueryRef": "Sum of total_liabilities"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "corporate_financial_health balance_sheet"
+                        }
+                      },
+                      "Property": "stockholders_equity"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(corporate_financial_health balance_sheet.stockholders_equity)",
+              "nativeQueryRef": "Sum of stockholders_equity"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "corporate_financial_health balance_sheet"
+                  }
+                },
+                "Property": "end"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "16c9a8e47b8ec22cbb5c",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "corporate_financial_health balance_sheet"
+              }
+            },
+            "Property": "end"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "e668cd6a41901d049868",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "corporate_financial_health balance_sheet"
+                  }
+                },
+                "Property": "total_liabilities"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "ee7a47acab04f6ef4e50",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "corporate_financial_health balance_sheet"
+                  }
+                },
+                "Property": "stockholders_equity"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

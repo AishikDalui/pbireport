@@ -1,0 +1,86 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 50,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 852.38305001469359,
+            "y": 102.4223489799223
+          },
+          "nodeIndex": "corporate_financial_health accounts_payable",
+          "nodeLineageTag": "ac113e90-5485-4223-9eec-1e88f1946f43",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 618.38305001469359,
+            "y": -50
+          },
+          "nodeIndex": "corporate_financial_health balance_sheet",
+          "nodeLineageTag": "f7730e25-1871-47b1-aba5-b627b5a35f88",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 334.20156119318511,
+            "y": -17.155302040155334
+          },
+          "nodeIndex": "corporate_financial_health cash_flow",
+          "nodeLineageTag": "344632af-54c9-4917-9426-9ef77b92c215",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 50,
+            "y": -20.014889220402495
+          },
+          "nodeIndex": "corporate_financial_health income_statement",
+          "nodeLineageTag": "7f46693c-f287-4db2-8ee0-2c1dff72fd24",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1086.3830500146937,
+            "y": 66.422348979922333
+          },
+          "nodeIndex": "Calendar",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

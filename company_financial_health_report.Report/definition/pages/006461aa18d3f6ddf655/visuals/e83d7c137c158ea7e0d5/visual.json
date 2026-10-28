@@ -1,0 +1,74 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "e83d7c137c158ea7e0d5",
+  "position": {
+    "x": 345.64459930313592,
+    "y": 46.829268292682926,
+    "z": 1,
+    "height": 98.118466898954708,
+    "width": 267.59581881533103,
+    "tabOrder": 1
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "corporate_financial_health cash_flow"
+                    }
+                  },
+                  "Property": "Latest FY Cash Conversion Ratio"
+                }
+              },
+              "queryRef": "corporate_financial_health cash_flow.Latest FY Cash Conversion Ratio",
+              "nativeQueryRef": "Latest FY Cash Conversion Ratio"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "corporate_financial_health cash_flow"
+                  }
+                },
+                "Property": "Latest FY Cash Conversion Ratio"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "950dfe844acc0c2f030d",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "corporate_financial_health cash_flow"
+              }
+            },
+            "Property": "Latest FY Cash Conversion Ratio"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

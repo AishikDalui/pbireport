@@ -1,0 +1,74 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "bcf16320e10417c7dc38",
+  "position": {
+    "x": 653.37979094076661,
+    "y": 46.829268292682926,
+    "z": 2,
+    "height": 98.118466898954708,
+    "width": 307.73519163763069,
+    "tabOrder": 2
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "corporate_financial_health cash_flow"
+                    }
+                  },
+                  "Property": "Latest FY Cash Flow vs Net Income Gap"
+                }
+              },
+              "queryRef": "corporate_financial_health cash_flow.Latest FY Cash Flow vs Net Income Gap",
+              "nativeQueryRef": "Latest FY Cash Flow vs Net Income Gap"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "corporate_financial_health cash_flow"
+                  }
+                },
+                "Property": "Latest FY Cash Flow vs Net Income Gap"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "1fef21426b54cd9bf570",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "corporate_financial_health cash_flow"
+              }
+            },
+            "Property": "Latest FY Cash Flow vs Net Income Gap"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

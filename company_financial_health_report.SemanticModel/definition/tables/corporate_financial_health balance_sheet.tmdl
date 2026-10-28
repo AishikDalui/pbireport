@@ -1,0 +1,176 @@
+table 'corporate_financial_health balance_sheet'
+	lineageTag: f7730e25-1871-47b1-aba5-b627b5a35f88
+
+	measure 'Working Capital' = ```
+			
+			SUM('corporate_financial_health balance_sheet'[current_assets])
+			    - SUM('corporate_financial_health balance_sheet'[current_liabilities])
+			
+			```
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 66522cbf-5a2e-4f67-b343-2a1d9e30bcde
+
+	column end
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 3514d5bc-be32-4b93-8897-328dc88baee1
+		summarizeBy: none
+		sourceColumn: end
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column total_assets
+		dataType: int64
+		formatString: 0
+		lineageTag: b7797e80-ccc3-4e82-88c5-dd334f9ba2d5
+		summarizeBy: sum
+		sourceColumn: total_assets
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_liabilities
+		dataType: int64
+		formatString: 0
+		lineageTag: 8e7320de-ee2d-4528-aebe-14bfd257f13c
+		summarizeBy: sum
+		sourceColumn: total_liabilities
+
+		annotation SummarizationSetBy = Automatic
+
+	column stockholders_equity
+		dataType: int64
+		formatString: 0
+		lineageTag: 573c5d67-0419-48f4-ae19-74171b5d3a46
+		summarizeBy: sum
+		sourceColumn: stockholders_equity
+
+		annotation SummarizationSetBy = Automatic
+
+	column current_assets
+		dataType: int64
+		formatString: 0
+		lineageTag: 3cee9e31-b023-445e-b92f-20c79355d4af
+		summarizeBy: sum
+		sourceColumn: current_assets
+
+		annotation SummarizationSetBy = Automatic
+
+	column current_liabilities
+		dataType: int64
+		formatString: 0
+		lineageTag: 8df5cc8c-9635-475c-a5de-806d64ef2cc2
+		summarizeBy: sum
+		sourceColumn: current_liabilities
+
+		annotation SummarizationSetBy = Automatic
+
+	column working_capital
+		dataType: int64
+		formatString: 0
+		lineageTag: 9ffa856b-c56c-4156-806b-afc8b150a7ea
+		summarizeBy: sum
+		sourceColumn: working_capital
+
+		annotation SummarizationSetBy = Automatic
+
+	column current_ratio
+		dataType: double
+		lineageTag: 29a666b1-100e-4444-824f-c901a808e891
+		summarizeBy: sum
+		sourceColumn: current_ratio
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cash
+		dataType: int64
+		formatString: 0
+		lineageTag: c7e541c0-ca4b-42d8-9f10-6f74c12d3cf3
+		summarizeBy: sum
+		sourceColumn: cash
+
+		annotation SummarizationSetBy = Automatic
+
+	column accounts_receivable
+		dataType: int64
+		formatString: 0
+		lineageTag: 0b8cd7be-5beb-49cd-9ba2-4f8b1db521df
+		summarizeBy: sum
+		sourceColumn: accounts_receivable
+
+		annotation SummarizationSetBy = Automatic
+
+	column inventory
+		dataType: int64
+		formatString: 0
+		lineageTag: c78ecdae-cb16-4add-aeea-1f6f36026e19
+		summarizeBy: sum
+		sourceColumn: inventory
+
+		annotation SummarizationSetBy = Automatic
+
+	column other_current_assets
+		dataType: int64
+		formatString: 0
+		lineageTag: 4b66d1db-fd27-41bb-8558-10dc4afca3a4
+		summarizeBy: sum
+		sourceColumn: other_current_assets
+
+		annotation SummarizationSetBy = Automatic
+
+	column cash_pct
+		dataType: double
+		lineageTag: dd7e1529-73ae-4930-a2e9-7cdb1c056bb4
+		summarizeBy: sum
+		sourceColumn: cash_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ar_pct
+		dataType: double
+		lineageTag: 6327ea49-d982-4f3c-83af-91d5e72719ce
+		summarizeBy: sum
+		sourceColumn: ar_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column inventory_pct
+		dataType: double
+		lineageTag: 4eb6c8e5-7408-4132-9b6b-6753bfe07735
+		summarizeBy: sum
+		sourceColumn: inventory_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column other_current_assets_pct
+		dataType: double
+		lineageTag: af01ec1d-07c9-4948-84fa-49b51dc42fb9
+		summarizeBy: sum
+		sourceColumn: other_current_assets_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'corporate_financial_health balance_sheet' = m
+		mode: import
+		source =
+				let
+				    Source = MySQL.Database("192.168.0.101:3306", "corporate_financial_health", [ReturnSingleDatabase=true]),
+				    corporate_financial_health_balance_sheet = Source{[Schema="corporate_financial_health",Item="balance_sheet"]}[Data]
+				in
+				    corporate_financial_health_balance_sheet
+
+	annotation PBI_ResultType = Table
+

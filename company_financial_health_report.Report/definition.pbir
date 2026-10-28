@@ -1,0 +1,8 @@
+{
+  "version": "4.0",
+  "datasetReference": {
+    "byPath": {
+      "path": "../company_financial_health_report.SemanticModel"
+    }
+  }
+}

@@ -1,0 +1,37 @@
+relationship 9b6e960e-0302-4cc4-af0f-a5752d4c16f2
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'corporate_financial_health accounts_payable'.end
+	toColumn: LocalDateTable_a77ca87b-ddbf-4ace-b972-f8ae75fd51e5.Date
+
+relationship AutoDetected_7c7c5f32-ae14-4408-b244-860d0adc1c9e
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'corporate_financial_health balance_sheet'.end
+	toColumn: 'corporate_financial_health cash_flow'.end
+
+relationship AutoDetected_2fabfe19-0231-42d6-ac5a-5f0766660572
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'corporate_financial_health income_statement'.end
+	toColumn: 'corporate_financial_health cash_flow'.end
+
+relationship 3e3ca13b-a89c-4401-8a4e-325a39832926
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'corporate_financial_health income_statement'.start
+	toColumn: LocalDateTable_1e5cecd1-5acd-4ed4-a060-b7d6f45115f7.Date
+
+relationship c2d26e80-3166-4ac9-9067-d9ed0c286372
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'corporate_financial_health cash_flow'.start
+	toColumn: LocalDateTable_b9aa7b82-4cfe-4493-bba4-0e577fa8bc95.Date
+
+relationship 5a1d7d75-d998-42b2-96f5-84fea90a8410
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'corporate_financial_health cash_flow'.end
+	toColumn: LocalDateTable_efbc44b2-04ee-466d-addd-cebc55c514e1.Date
+
+relationship 74380510-6058-4a7a-a797-fbcf4b47cf04
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Calendar.Date
+	toColumn: LocalDateTable_54310d6c-6244-4177-a287-8ddcc12c0952.Date
+

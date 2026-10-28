@@ -1,0 +1,317 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "b6f6806f52fc9aaaad0b",
+  "position": {
+    "x": 42.369337979094077,
+    "y": 236.37630662020908,
+    "z": 3,
+    "height": 283.205574912892,
+    "width": 595.40069686411152,
+    "tabOrder": 3
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "HierarchyLevel": {
+                  "Expression": {
+                    "Hierarchy": {
+                      "Expression": {
+                        "PropertyVariationSource": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "corporate_financial_health cash_flow"
+                            }
+                          },
+                          "Name": "Variation",
+                          "Property": "end"
+                        }
+                      },
+                      "Hierarchy": "Date Hierarchy"
+                    }
+                  },
+                  "Level": "Year"
+                }
+              },
+              "queryRef": "corporate_financial_health cash_flow.end.Variation.Date Hierarchy.Year",
+              "nativeQueryRef": "end Year",
+              "active": true
+            },
+            {
+              "field": {
+                "HierarchyLevel": {
+                  "Expression": {
+                    "Hierarchy": {
+                      "Expression": {
+                        "PropertyVariationSource": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "corporate_financial_health cash_flow"
+                            }
+                          },
+                          "Name": "Variation",
+                          "Property": "end"
+                        }
+                      },
+                      "Hierarchy": "Date Hierarchy"
+                    }
+                  },
+                  "Level": "Quarter"
+                }
+              },
+              "queryRef": "corporate_financial_health cash_flow.end.Variation.Date Hierarchy.Quarter",
+              "nativeQueryRef": "end Quarter",
+              "active": false
+            },
+            {
+              "field": {
+                "HierarchyLevel": {
+                  "Expression": {
+                    "Hierarchy": {
+                      "Expression": {
+                        "PropertyVariationSource": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "corporate_financial_health cash_flow"
+                            }
+                          },
+                          "Name": "Variation",
+                          "Property": "end"
+                        }
+                      },
+                      "Hierarchy": "Date Hierarchy"
+                    }
+                  },
+                  "Level": "Month"
+                }
+              },
+              "queryRef": "corporate_financial_health cash_flow.end.Variation.Date Hierarchy.Month",
+              "nativeQueryRef": "end Month",
+              "active": false
+            },
+            {
+              "field": {
+                "HierarchyLevel": {
+                  "Expression": {
+                    "Hierarchy": {
+                      "Expression": {
+                        "PropertyVariationSource": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "corporate_financial_health cash_flow"
+                            }
+                          },
+                          "Name": "Variation",
+                          "Property": "end"
+                        }
+                      },
+                      "Hierarchy": "Date Hierarchy"
+                    }
+                  },
+                  "Level": "Day"
+                }
+              },
+              "queryRef": "corporate_financial_health cash_flow.end.Variation.Date Hierarchy.Day",
+              "nativeQueryRef": "end Day",
+              "active": false
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "corporate_financial_health cash_flow"
+                    }
+                  },
+                  "Property": "Latest FY Operating Cash Flow"
+                }
+              },
+              "queryRef": "corporate_financial_health cash_flow.Latest FY Operating Cash Flow",
+              "nativeQueryRef": "Latest FY Operating Cash Flow"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "corporate_financial_health cash_flow"
+                        }
+                      },
+                      "Property": "net_income"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(corporate_financial_health cash_flow.net_income)",
+              "nativeQueryRef": "Sum of net_income"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "lineStyles": [
+        {
+          "properties": {
+            "showMarker": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "69460622fd2d57381e1d",
+        "field": {
+          "HierarchyLevel": {
+            "Expression": {
+              "Hierarchy": {
+                "Expression": {
+                  "PropertyVariationSource": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "corporate_financial_health cash_flow"
+                      }
+                    },
+                    "Name": "Variation",
+                    "Property": "end"
+                  }
+                },
+                "Hierarchy": "Date Hierarchy"
+              }
+            },
+            "Level": "Year"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "06aee07422596cbb5381",
+        "field": {
+          "HierarchyLevel": {
+            "Expression": {
+              "Hierarchy": {
+                "Expression": {
+                  "PropertyVariationSource": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "corporate_financial_health cash_flow"
+                      }
+                    },
+                    "Name": "Variation",
+                    "Property": "end"
+                  }
+                },
+                "Hierarchy": "Date Hierarchy"
+              }
+            },
+            "Level": "Quarter"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "32c98b1ac48d28da33f6",
+        "field": {
+          "HierarchyLevel": {
+            "Expression": {
+              "Hierarchy": {
+                "Expression": {
+                  "PropertyVariationSource": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "corporate_financial_health cash_flow"
+                      }
+                    },
+                    "Name": "Variation",
+                    "Property": "end"
+                  }
+                },
+                "Hierarchy": "Date Hierarchy"
+              }
+            },
+            "Level": "Month"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "7abb88888e70e094bfc2",
+        "field": {
+          "HierarchyLevel": {
+            "Expression": {
+              "Hierarchy": {
+                "Expression": {
+                  "PropertyVariationSource": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "corporate_financial_health cash_flow"
+                      }
+                    },
+                    "Name": "Variation",
+                    "Property": "end"
+                  }
+                },
+                "Hierarchy": "Date Hierarchy"
+              }
+            },
+            "Level": "Day"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "6b791e040110db55ce96",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "corporate_financial_health cash_flow"
+              }
+            },
+            "Property": "Latest FY Operating Cash Flow"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "7a67b6a44dec7278bacd",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "corporate_financial_health cash_flow"
+                  }
+                },
+                "Property": "net_income"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

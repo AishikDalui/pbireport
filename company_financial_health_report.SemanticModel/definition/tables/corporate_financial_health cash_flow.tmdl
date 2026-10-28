@@ -1,0 +1,211 @@
+table 'corporate_financial_health cash_flow'
+	lineageTag: 344632af-54c9-4917-9426-9ef77b92c215
+
+	measure 'Latest FY Operating Cash Flow' = ```
+			
+			VAR LatestDate =
+			    CALCULATE(
+			        MAX('corporate_financial_health cash_flow'[end]),
+			        REMOVEFILTERS('corporate_financial_health cash_flow')
+			    )
+			RETURN
+			    CALCULATE(
+			        SUM('corporate_financial_health cash_flow'[operating_cash_flow]),
+			        REMOVEFILTERS('corporate_financial_health cash_flow'),
+			        'corporate_financial_health cash_flow'[end] = LatestDate
+			    )
+			
+			```
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 2248e321-2645-462c-af63-6b43ed2ab561
+
+	measure Latest_FY_Net_Income = ```
+			
+			VAR LatestDate =
+			    CALCULATE(
+			        MAX('corporate_financial_health cash_flow'[end]),
+			        REMOVEFILTERS('corporate_financial_health cash_flow')
+			    )
+			RETURN
+			    CALCULATE(
+			        SUM('corporate_financial_health cash_flow'[net_income]),
+			        REMOVEFILTERS('corporate_financial_health cash_flow'),
+			        'corporate_financial_health cash_flow'[end] = LatestDate
+			    )
+			
+			```
+		formatString: 0
+		lineageTag: 025a1392-dff7-4da6-81bb-eaa3f4d1f093
+
+	measure 'Latest FY Cash Conversion Ratio' = DIVIDE([Latest FY Operating Cash Flow], [Latest FY Net Income])
+		formatString: 0.000
+		lineageTag: 8cae95eb-c439-41e3-8473-b615623702c5
+
+	measure 'Latest FY Cash Flow vs Net Income Gap' = ```
+			
+			[Latest FY Operating Cash Flow] - [Latest FY Net Income]
+			
+			```
+		formatString: 0.00
+		lineageTag: 82e86113-0df9-46b8-a708-4c829930160c
+
+	column start
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 5249ca02-ef8b-40f3-96b9-e8d397ce0e4d
+		summarizeBy: none
+		sourceColumn: start
+
+		variation Variation
+			isDefault
+			relationship: c2d26e80-3166-4ac9-9067-d9ed0c286372
+			defaultHierarchy: LocalDateTable_b9aa7b82-4cfe-4493-bba4-0e577fa8bc95.'Date Hierarchy'
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column end
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: ce5bbb83-95bf-4894-9b4e-917b97992fc4
+		summarizeBy: none
+		sourceColumn: end
+
+		variation Variation
+			isDefault
+			relationship: 5a1d7d75-d998-42b2-96f5-84fea90a8410
+			defaultHierarchy: LocalDateTable_efbc44b2-04ee-466d-addd-cebc55c514e1.'Date Hierarchy'
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column operating_cash_flow
+		dataType: double
+		lineageTag: d3de9dbe-4786-4509-8ca1-5e221cbabb1f
+		summarizeBy: sum
+		sourceColumn: operating_cash_flow
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column net_income
+		dataType: int64
+		formatString: 0
+		lineageTag: 78dddc60-dea0-4bb7-9624-b4698eaaf022
+		summarizeBy: sum
+		sourceColumn: net_income
+
+		annotation SummarizationSetBy = Automatic
+
+	column depreciation_amortization
+		dataType: double
+		lineageTag: f4d873dc-6e61-4cc1-89a5-da072349aac5
+		summarizeBy: sum
+		sourceColumn: depreciation_amortization
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column share_based_compensation
+		dataType: int64
+		formatString: 0
+		lineageTag: b017192d-7ef9-420a-8f2c-546dd3e95aa4
+		summarizeBy: sum
+		sourceColumn: share_based_compensation
+
+		annotation SummarizationSetBy = Automatic
+
+	column accounts_receivable_adjustment
+		dataType: int64
+		formatString: 0
+		lineageTag: 44087548-9536-439d-83b6-d0cf5a0d749e
+		summarizeBy: sum
+		sourceColumn: accounts_receivable_adjustment
+
+		annotation SummarizationSetBy = Automatic
+
+	column inventory_adjustment
+		dataType: int64
+		formatString: 0
+		lineageTag: 38d25dcb-6bdb-4161-b33f-6d8675fe5bc2
+		summarizeBy: sum
+		sourceColumn: inventory_adjustment
+
+		annotation SummarizationSetBy = Automatic
+
+	column accounts_payable_adjustment
+		dataType: int64
+		formatString: 0
+		lineageTag: 5cffff6a-fc11-407a-900a-010cadce5d36
+		summarizeBy: sum
+		sourceColumn: accounts_payable_adjustment
+
+		annotation SummarizationSetBy = Automatic
+
+	column other_operating_assets_adjustment
+		dataType: int64
+		formatString: 0
+		lineageTag: bd36507c-3fbf-4461-bf33-4157a9aee527
+		summarizeBy: sum
+		sourceColumn: other_operating_assets_adjustment
+
+		annotation SummarizationSetBy = Automatic
+
+	column other_operating_liabilities_adjustment
+		dataType: int64
+		formatString: 0
+		lineageTag: 9da2c695-2b4e-4d2d-a597-3b8add7326a5
+		summarizeBy: sum
+		sourceColumn: other_operating_liabilities_adjustment
+
+		annotation SummarizationSetBy = Automatic
+
+	column other_noncash_adjustment
+		dataType: double
+		lineageTag: 2df382ca-cca2-4eb4-9df4-ddc2e5799d1d
+		summarizeBy: sum
+		sourceColumn: other_noncash_adjustment
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ocf_to_net_income
+		dataType: double
+		lineageTag: 159f51be-316d-4b57-8c23-112a0c077b65
+		summarizeBy: sum
+		sourceColumn: ocf_to_net_income
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ocf_minus_net_income
+		dataType: double
+		lineageTag: 59f34ed8-be7d-444b-a1bf-65685444cf7d
+		summarizeBy: sum
+		sourceColumn: ocf_minus_net_income
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'corporate_financial_health cash_flow' = m
+		mode: import
+		source =
+				let
+				    Source = MySQL.Database("192.168.0.101:3306", "corporate_financial_health", [ReturnSingleDatabase=true]),
+				    corporate_financial_health_cash_flow = Source{[Schema="corporate_financial_health",Item="cash_flow"]}[Data]
+				in
+				    corporate_financial_health_cash_flow
+
+	annotation PBI_ResultType = Table
+
